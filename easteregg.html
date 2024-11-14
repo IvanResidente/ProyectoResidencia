@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de Snake</title>
+    <link rel="stylesheet" href="easteregg.css" />
+    <!-- Enlace al archivo CSS -->
+  </head>
+  <body>
+    <div id="game">
+      <!-- Contenedor del juego donde se dibujará la serpiente y la comida -->
+      <div id="score">Puntaje: 0</div>
+    </div>
+    <button class="back-button" onclick="goBack()">Regresar</button>
+    <!-- Botón para regresar a la página principal -->
+
+    <script>
+      // Inicialización de variables del juego
+      const game = document.getElementById("game");
+      const scoreDisplay = document.getElementById("score");
+      const gridSize = 20; // Tamaño de cada celda en el grid
+      let snake = [{ x: 8 * gridSize, y: 8 * gridSize }]; // Inicializa la serpiente en el centro
+      let direction = { x: 0, y: 0 }; // Dirección inicial de la serpiente
+      let food = { x: 0, y: 0 }; // Posición de la comida
+      let score = 0; // Puntaje inicial
+      let gameInterval;
+
+      // Función para comenzar el juego
+      function startGame() {
+        placeFood(); // Coloca la comida en una ubicación aleatoria
+        gameInterval = setInterval(gameLoop, 150); // Inicia el ciclo del juego
+      }
+
+      // Función principal del ciclo de juego
+      function gameLoop() {
+        moveSnake(); // Mueve la serpiente
+        if (checkCollision()) {
+          clearInterval(gameInterval); // Detiene el ciclo si hay colisión
+          alert("¡Game Over! Tu puntaje es: " + score); // Muestra el puntaje
+          location.reload(); // Reinicia el juego
+        }
+        draw(); // Redibuja la serpiente y la comida
+      }
+
+      // Función para mover la serpiente
+      function moveSnake() {
+        const head = {
+          x: snake[0].x + direction.x,
+          y: snake[0].y + direction.y,
+        };
+        if (head.x === food.x && head.y === food.y) {
+          score++; // Aumenta el puntaje
+          scoreDisplay.innerText = "Puntaje: " + score; // Actualiza el puntaje mostrado
+          snake.unshift(head); // Agrega un nuevo segmento a la cabeza de la serpiente
+          placeFood(); // Reubica la comida
+        } else {
+          snake.unshift(head); // Mueve la serpiente hacia adelante
+          snake.pop(); // Elimina el último segmento
+        }
+      }
+
+      // Función para colocar la comida en una ubicación aleatoria
+      function placeFood() {
+        food.x =
+          Math.floor(Math.random() * (game.clientWidth / gridSize)) * gridSize;
+        food.y =
+          Math.floor(Math.random() * (game.clientHeight / gridSize)) * gridSize;
+        // Asegura que la comida no aparezca en la misma ubicación que la serpiente
+        if (
+          snake.some((segment) => segment.x === food.x && segment.y === food.y)
+        ) {
+          placeFood();
+        }
+      }
+
+      // Función para dibujar la serpiente y la comida
+      function draw() {
+        game.innerHTML = ""; // Limpiar el área de juego
+        snake.forEach((segment) => {
+          const snakeSegment = document.createElement("div");
+          snakeSegment.style.width = gridSize + "px";
+          snakeSegment.style.height = gridSize + "px";
+          snakeSegment.style.left = segment.x + "px";
+          snakeSegment.style.top = segment.y + "px";
+          snakeSegment.classList.add("snake"); // Aplica los estilos de la serpiente
+          game.appendChild(snakeSegment);
+        });
+
+        const foodElement = document.createElement("div");
+        foodElement.classList.add("food");
+        foodElement.style.left = food.x + "px";
+        foodElement.style.top = food.y + "px";
+        game.appendChild(foodElement); // Dibuja la comida
+      }
+
+      // Función para verificar si la serpiente colisionó
+      function checkCollision() {
+        const head = snake[0];
+        // Colisión con los bordes
+        if (
+          head.x < 0 ||
+          head.x >= game.clientWidth ||
+          head.y < 0 ||
+          head.y >= game.clientHeight
+        ) {
+          return true;
+        }
+        // Colisión consigo misma
+        for (let i = 1; i < snake.length; i++) {
+          if (head.x === snake[i].x && head.y === snake[i].y) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Control de la serpiente con las teclas del teclado
+      document.addEventListener("keydown", (event) => {
+        switch (event.code) {
+          case "ArrowUp":
+            if (direction.y === 0) direction = { x: 0, y: -gridSize }; // Mover hacia arriba
+            break;
+          case "ArrowDown":
+            if (direction.y === 0) direction = { x: 0, y: gridSize }; // Mover hacia abajo
+            break;
+          case "ArrowLeft":
+            if (direction.x === 0) direction = { x: -gridSize, y: 0 }; // Mover hacia la izquierda
+            break;
+          case "ArrowRight":
+            if (direction.x === 0) direction = { x: gridSize, y: 0 }; // Mover hacia la derecha
+            break;
+        }
+      });
+
+      // Control táctil para dispositivos móviles
+      game.addEventListener("touchstart", (event) => {
+        const touch = event.touches[0];
+        const touchX = touch.clientX - game.offsetLeft;
+        const touchY = touch.clientY - game.offsetTop;
+
+        if (Math.abs(touchX - snake[0].x) > Math.abs(touchY - snake[0].y)) {
+          direction =
+            touchX < snake[0].x
+              ? { x: -gridSize, y: 0 }
+              : { x: gridSize, y: 0 };
+        } else {
+          direction =
+            touchY < snake[0].y
+              ? { x: 0, y: -gridSize }
+              : { x: 0, y: gridSize };
+        }
+      });
+
+      // Función para regresar a la página principal
+      function goBack() {
+        window.location.href = "index.html"; // Redirige a la página principal
+      }
+
+      startGame(); // Inicia el juego
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+/* Estilos generales para el cuerpo del documento */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fuente legible y moderna */
+    color: #333; /* Color de texto oscuro para mejor lectura */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para la cabecera */
+  header {
+    background-color: #900c3f; /* Fondo rojo oscuro */
+    color: #fff; /* Color blanco para el texto */
+    padding: 20px;
+    text-align: center; /* Centra el título */
+    border-radius: 0 0 20px 20px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilos para las secciones */
+  section {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+    margin: 30px auto; /* Centrado horizontal */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    width: 80%; /* 80% del ancho de la ventana */
+    max-width: 900px; /* Ancho máximo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-left: 6px solid #ffd700; /* Borde dorado a la izquierda */
+  }
+  
+  /* Estilos para los subtítulos */
+  h2 {
+    color: #581845; /* Color morado para los subtítulos */
+    border-bottom: 2px solid #ffd700; /* Línea dorada en la parte inferior */
+    padding-bottom: 10px;
+    font-size: 24px; /* Tamaño de fuente grande */
+    margin-bottom: 15px; /* Espacio debajo del subtítulo */
+  }
+  
+  /* Estilos para los párrafos */
+  p {
+    line-height: 1.8; /* Mayor espacio entre líneas para mejor lectura */
+    font-size: 16px; /* Tamaño de fuente normal */
+    margin: 10px 0; /* Margen superior e inferior */
+    text-align: justify; /* Justifica el texto */
+  }
+  
+  /* Estilos para las imágenes */
+  img {
+    max-width: 50%; /* Imagen al 50% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 20px auto; /* Espacio alrededor y centrado */
+    border-radius: 8px; /* Bordes redondeados en la imagen */
+    display: block; /* Hace que la imagen sea un bloque para centrarla */
+  }
+  
+  /* Estilos para el pie de página */
+  footer {
+    text-align: center; /* Centra el texto del pie */
+    background-color: #900c3f; /* Fondo rojo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 15px 0; /* Espaciado superior e inferior */
+    font-size: 0.85em; /* Fuente pequeña */
+    margin-top: 30px; /* Separación superior */
+  }
+  
+  /* Estilos para el botón de regreso */
+  .btn-regreso {
+    display: inline-block; /* Alinea el botón en línea */
+    background-color: #900c3f; /* Fondo rojo oscuro */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Relleno dentro del botón */
+    text-align: center; /* Centra el texto dentro del botón */
+    text-decoration: none; /* Elimina subrayado del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 20px; /* Espacio superior */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilos para el botón al pasar el mouse */
+  .btn-regreso:hover {
+    background-color: #581845; /* Cambia el color de fondo al pasar el mouse */
+  }
+  

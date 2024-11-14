@@ -1,0 +1,67 @@
+/* Estilo general de la página */
+body {
+    display: flex;
+    flex-direction: column; /* Disposición en columna para el botón debajo del juego */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #900c3f; /* Color de fondo rojo oscuro */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo del área de juego */
+  #game {
+    position: relative;
+    width: 90vw; /* 90% del ancho de la ventana */
+    height: 90vw; /* 90% del ancho de la ventana para mantener la proporción */
+    max-width: 400px; /* Ancho máximo */
+    max-height: 400px; /* Altura máxima */
+    border: 2px solid #ffd700; /* Borde dorado */
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 20px; /* Espacio entre el juego y el botón */
+  }
+  
+  /* Estilo de la serpiente */
+  .snake {
+    position: absolute;
+    background-color: #4caf50; /* Color verde */
+    border: 2px solid #ffd700; /* Borde dorado */
+  }
+  
+  /* Estilo de la comida */
+  .food {
+    position: absolute;
+    width: 20px; /* Tamaño adecuado para la comida */
+    height: 20px;
+    background-image: url("easteregg.png"); /* Imagen para la comida */
+    background-size: cover; /* Asegura que la imagen cubra toda el área */
+  }
+  
+  /* Estilo del puntaje */
+  #score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Estilo para el botón de regresar */
+  .back-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4caf50; /* Color verde */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Efecto hover en el botón */
+  .back-button:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el ratón */
+  }
+  
